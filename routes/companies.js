@@ -37,7 +37,7 @@ router.get("/:code", async function(req, res, next) {
         );
 
         if (companiesResult.rows.length === 0) {
-            throw new ExpressError(`Company not found: ${code}`);
+            throw new ExpressError(`Company not found: ${code}`, 404);
         } 
 
         const company = companiesResult.rows[0];

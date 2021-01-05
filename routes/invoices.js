@@ -52,7 +52,6 @@ router.get("/:id", async function(req, res, next) {
             },
             amt: data.amt,
             paid: data.paid,
-            add_date: data.add_date,
             paid_date: data.paid_date
         };
 
@@ -70,7 +69,7 @@ router.post("/", async function(req, res, next) {
         const result = await db.query(
             `INSERT INTO invoices (comp_code, amt) 
             VALUES ($1, $2) 
-            RETURNING id, comp_code, amt, paid, add_date, paid_date`,
+            RETURNING id, comp_code, amt, paid, paid_date`,
             [comp_code, amt]
         );
 
@@ -90,12 +89,12 @@ router.put("/:id", async function(req, res, next) {
             `UPDATE invoices
             SET amt=$1
             WHERE id=$2
-            RETURNING id, comp_code, amt, paid, add_date, paid_date`,
+            RETURNING id, comp_code, amt, paid, paid_date`,
             [amt, id]
         );
 
         if (result.rows.length === 0) {
-            throw new ExpressError(`Invoice not found: ${id}`);
+            throw new ExpressError(`Invoice not found: ${id}`, 404);
         } else {
             return res.json({"invoice": result.rows[0]});
         }
