@@ -1,4 +1,3 @@
-\c biztime
 
 DROP TABLE IF EXISTS invoices CASCADE;
 DROP TABLE IF EXISTS companies CASCADE;
