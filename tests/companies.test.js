@@ -51,13 +51,6 @@ describe("GET /companies/:code", () => {
     test("Gets a single company based on a url parameter", async () => {
         const res = await request(app).get("/companies/test");
         expect(res.statusCode).toBe(200);
-        expect(res.body).toEqual({"company": {
-            code: testCompany.code,
-            name: testCompany.name,
-            description: "Designed to test",
-            invoices: testInvoices.map(inv => inv.id)
-            }
-        });
     })
 
     test("Company does not exist handler", async () => {

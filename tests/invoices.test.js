@@ -102,14 +102,14 @@ describe("POST /invoices", () => {
 
 describe("PUT /invoices/:id", () => {
     test("Updates an specified invoice", async () => {
-        const res = await request(app).put(`/invoices/${testInvoices[0].id}`).send({ amt: "500"});
+        const res = await request(app).put(`/invoices/${testInvoices[1].id}`).send({ amt: "500", paid: false});
         expect(res.statusCode).toBe(200);
         expect(res.body).toEqual({invoice: {
-            id: testInvoices[0].id, 
-            comp_code: testInvoices[0].comp_code, 
+            id: testInvoices[1].id, 
+            comp_code: testInvoices[1].comp_code, 
             amt: 500, 
-            paid: testInvoices[0].paid, 
-            paid_date: testInvoices[0].paid_date
+            paid: testInvoices[1].paid, 
+            paid_date: testInvoices[1].paid_date
         }});
     });
 
